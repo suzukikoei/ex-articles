@@ -52,7 +52,7 @@ public class Commentrepository {
     public void Insert(Comment comment){
         SqlParameterSource param = new BeanPropertySqlParameterSource(comment);
         String sql = """
-                INSERT INTO comments (id, name, content) VALUES (:id, :name, :articleId);
+                INSERT INTO comments (id, name, content, article_id) VALUES (:id, :name, :content, :articleId);
                 """;
         template.update(sql, param);
     }
