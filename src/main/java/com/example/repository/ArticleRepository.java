@@ -17,7 +17,7 @@ import java.util.List;
  * 記事の情報を操作するリポジトリ.
  */
 @Repository
-public class Articlerepository {
+public class ArticleRepository {
     private static final RowMapper<Article> ARTICLE_ROW_MAPPER =
             (rs, i) -> {
         Article article = new Article();
@@ -32,7 +32,7 @@ public class Articlerepository {
     private NamedParameterJdbcTemplate template;
 
     @Autowired
-    private Commentrepository commentrepository;
+    private CommentRepository commentrepository;
 
     /**
      * 記事を全件検索する.
@@ -64,7 +64,7 @@ public class Articlerepository {
     }
 
     /**
-     * 記事をDBに挿入する
+     * 記事をDBに挿入する.
      * @param article 記事
      */
     public void InsertArticle(Article article){
@@ -75,6 +75,11 @@ public class Articlerepository {
         template.update(sql, param);
     }
 
+    /**
+     * 記事を削除する.
+     *
+     * @param id ID
+     */
     public void DeleteByID(int id){
         String sql = """
                 DELETE FROM articles WHERE id = :id;

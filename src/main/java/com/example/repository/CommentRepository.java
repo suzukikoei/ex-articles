@@ -15,7 +15,7 @@ import java.util.List;
  * コメントの情報を操作するリポジトリ.
  */
 @Repository
-public class Commentrepository {
+public class CommentRepository {
     private static final RowMapper<Comment> COMMENT_ROW_MAPPER =
             (rs, i) -> {
         Comment comment = new Comment();
