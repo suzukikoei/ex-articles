@@ -32,6 +32,14 @@ public class ArticleController {
         return "bulletin-board";
     }
 
+    @PostMapping("/postPost")
+    public String postPost(ArticleForm articleForm, CommentForm commentForm, Model model){
+        ModelMapper modelMapper = new ModelMapper();
+        Article article = modelMapper.map(articleForm, Article.class);
+        articleService.InsertArticle(article);
+        return index(articleForm, commentForm, model);
+    }
+
     @PostMapping("/postComment")
     public String postComment(ArticleForm articleForm, CommentForm commentForm, Model model){
         ModelMapper modelMapper = new ModelMapper();

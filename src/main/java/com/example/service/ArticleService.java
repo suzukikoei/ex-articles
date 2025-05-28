@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.domain.Article;
 import com.example.repository.ArticleRepository;
+import com.example.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,13 +18,20 @@ public class ArticleService {
     @Autowired
     private ArticleRepository articleRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     /**
      * 記事の全件検索を行う.
      *
      * @return 記事の一覧
      */
     public List<Article> searchAll(){
-        return articleRepository.findAll();
+        List<Article> articles = articleRepository.findAll();
+        for(Article article: articles){
+            article.setComments(commentRepository.findByArticleId(article.getId()));
+        }
+        return articles;
     }
 
     /**

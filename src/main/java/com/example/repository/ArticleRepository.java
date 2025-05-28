@@ -31,9 +31,6 @@ public class ArticleRepository {
     @Autowired
     private NamedParameterJdbcTemplate template;
 
-    @Autowired
-    private CommentRepository commentrepository;
-
     /**
      * 記事を全件検索する.
      *
@@ -57,9 +54,6 @@ public class ArticleRepository {
                 SELECT id, name, content FROM articles ORDER BY id DESC;
                 """;
         List<Article> articles = template.query(sqlForArticles, ARTICLE_ROW_MAPPER);
-        for(Article article: articles){
-            article.setComments(commentrepository.findByArticleId(article.getId()));
-        }
         return articles;
     }
 
@@ -70,7 +64,7 @@ public class ArticleRepository {
     public void InsertArticle(Article article){
         SqlParameterSource param = new BeanPropertySqlParameterSource(article);
         String sql = """
-                INSERT INTO articles (id, name, content) VALUES (:id, :name, :content);
+                INSERT INTO articles (name, content) VALUES (:name, :content);
                 """;
         template.update(sql, param);
     }
