@@ -54,7 +54,7 @@ public class ArticleRepository {
 
 
         String sqlForArticles = """
-                SELECT id, name, content FROM articles ORDER BY id;
+                SELECT id, name, content FROM articles ORDER BY id DESC;
                 """;
         List<Article> articles = template.query(sqlForArticles, ARTICLE_ROW_MAPPER);
         for(Article article: articles){
