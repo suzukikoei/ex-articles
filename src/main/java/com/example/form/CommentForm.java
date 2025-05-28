@@ -1,30 +1,37 @@
 package com.example.form;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 /**
  * コメントのフォーム.
  */
 public class CommentForm {
     /** 名前　*/
-    private String name;
+    @NotBlank(message = "名前を入力してください")
+    @Size(max = 50, message = "名前は50文字以内で入力してください")
+    private String commentName;
     /** コメント内容　*/
-    private String content;
+    @NotBlank(message = "コメントを入力してください")
+    @Size(max = 100, message = "コメントは100文字以内で入力してください")
+    private String commentContent;
     /** 記事ID */
     private Integer articleId;
 
-    public String getName() {
-        return name;
+    public String getCommentName() {
+        return commentName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCommentName(String commentName) {
+        this.commentName = commentName;
     }
 
-    public String getContent() {
-        return content;
+    public String getCommentContent() {
+        return commentContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
     }
 
     public Integer getArticleId() {

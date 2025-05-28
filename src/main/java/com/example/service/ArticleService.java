@@ -28,9 +28,9 @@ public class ArticleService {
      */
     public List<Article> searchAll(){
         List<Article> articles = articleRepository.findAll();
-        for(Article article: articles){
-            article.setComments(commentRepository.findByArticleId(article.getId()));
-        }
+//        for(Article article: articles){
+//            article.setComments(commentRepository.findByArticleId(article.getId()));
+//        }
         return articles;
     }
 

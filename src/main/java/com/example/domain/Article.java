@@ -1,6 +1,7 @@
 package com.example.domain;
 
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  * 記事ドメイン.
