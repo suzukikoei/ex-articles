@@ -8,6 +8,8 @@ public class CommentForm {
     private String name;
     /** コメント内容　*/
     private String content;
+    /** 記事ID */
+    private Integer articleId;
 
     public String getName() {
         return name;
@@ -23,5 +25,13 @@ public class CommentForm {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
 }
