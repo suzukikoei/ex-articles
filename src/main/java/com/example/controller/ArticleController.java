@@ -86,8 +86,6 @@ public class ArticleController {
             BindingResult result
             , Model model) {
         if (result.hasErrors()) {
-            int errorArticleId = commentForm.getArticleId();
-            model.addAttribute("errorArticleId", errorArticleId);
             return index(articleForm, commentForm, model);
         }
 //        int commentArticleId = commentForm.getArticleId();
@@ -110,6 +108,12 @@ public class ArticleController {
     public String delete(Integer articleId, ArticleForm articleForm, CommentForm commentForm, Model model) {
 //        commentService.deleteByArticleId(articleId);
         articleService.DeleteById(articleId);
+        return "redirect:/articles";
+    }
+
+    @PostMapping("/deleteComment")
+    public String deleteComment(Integer commentId, ArticleForm articleForm, CommentForm commentForm, Model model){
+        commentService.deleteById(commentId);
         return "redirect:/articles";
     }
 }

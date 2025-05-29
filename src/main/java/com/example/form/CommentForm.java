@@ -16,7 +16,7 @@ public class CommentForm {
     @Size(max = 100, message = "コメントは100文字以内で入力してください")
     private String commentContent;
     /** 記事ID */
-    private Integer articleId;
+    private String articleId;
 
     public String getCommentName() {
         return commentName;
@@ -34,11 +34,11 @@ public class CommentForm {
         this.commentContent = commentContent;
     }
 
-    public Integer getArticleId() {
+    public String getArticleId() {
         return articleId;
     }
 
-    public void setArticleId(Integer articleId) {
+    public void setArticleId(String articleId) {
         this.articleId = articleId;
     }
 }

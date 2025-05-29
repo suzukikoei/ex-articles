@@ -30,11 +30,16 @@
         <input type="hidden" name="articleId" th:value="${article.id}" />
         <button>記事削除</button>
       </form>
+      <hr />
       <div th:each="comment : ${article.comments}">
         コメント者名：<span th:text="${comment.name}"></span><br />
         コメント内容：<br />
         <pre th:text="${comment.content}"></pre>
-
+        <form th:action="@{/articles/deleteComment}" method="post">
+          <input type="hidden" name="commentId" th:value="${comment.id}" />
+          <button>コメント削除</button>
+        </form>
+        <hr />
         <br />
       </div>
       <form
@@ -42,44 +47,30 @@
         th:object="${commentForm}"
         method="post"
       >
+        <input type="hidden" name="articleId" th:value="${article.id}" />
         <span
-          th:if="${errorArticleId == article.id}"
           th:errors="*{commentName}"
-          class="error-message"
+          th:if="${commentForm.articleId == article.id.toString()}"
         ></span
         ><br />
-        <label>名前</label><br />
+        名前：<br />
         <input
           type="text"
-          th:if="${commentArticleId == article.id}"
-          th:field="*{commentName}"
-        />
-        <input
-          type="text"
-          th:unless="${commentArticleId == article.id}"
-          th:field="*{commentName}"
+          name="commentName"
+          th:value="${commentForm.articleId == article.id.toString()} ? ${commentForm.commentName} : ''"
         />
         <br />
+        コメント：<br />
         <span
-          th:if="${errorArticleId == article.id}"
           th:errors="*{commentContent}"
-          class="error-message"
-        ></span
-        ><br />
-        <label>コメント</label><br />
-        <!-- <input type="text" th:field="*{commentContent}" /> -->
+          th:if="${commentForm.articleId == article.id.toString()}"
+        ></span>
         <input
           type="text"
-          th:if="${commentArticleId == article.id}"
-          th:field="*{commentContent}"
+          name="commentContent"
+          th:value="${commentForm.articleId == article.id.toString()} ? ${commentForm.commentContent} : ''"
         />
-        <input
-          type="text"
-          th:unless="${commentArticleId == article.id}"
-          th:field="*{commentContent}"
-        />
-        <!--        <input type="hidden" th:field="*{articleId}" th:value="${article.id}" />-->
-        <input type="hidden" name="articleId" th:value="${article.id}" />
+        <br />
         <button>コメント投稿</button>
       </form>
       <hr />

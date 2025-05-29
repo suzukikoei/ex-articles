@@ -38,12 +38,22 @@ public class CommentService {
     }
 
     /**
-     * コメントを削除する.
+     * 記事IDでコメントを削除する.
      *
      * @param articleId 記事ID
      */
     public void deleteByArticleId(int articleId){
         commentRepository.deleteByArticleId(articleId);
+    }
+
+
+    /**
+     * コメントのidでコメントを削除する.
+     *
+     * @param commentId 記事ID
+     */
+    public void deleteById(int commentId){
+        commentRepository.deleteById(commentId);
     }
 
 }
